@@ -1,7 +1,10 @@
 package com.chooseulike.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chooseulike.dto.Result;
 import com.chooseulike.entity.User;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * <p>
@@ -13,4 +16,5 @@ import com.chooseulike.entity.User;
  */
 public interface IUserService extends IService<User> {
 
+    Result sendCode(String phone, HttpSession session);
 }

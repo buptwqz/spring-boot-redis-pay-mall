@@ -1,10 +1,14 @@
 package com.chooseulike.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.chooseulike.dto.Result;
 import com.chooseulike.entity.User;
 import com.chooseulike.mapper.UserMapper;
 import com.chooseulike.service.IUserService;
+import com.chooseulike.utils.RegexUtils;
 import org.springframework.stereotype.Service;
+
+import javax.servlet.http.HttpSession;
 
 /**
  * <p>
@@ -17,4 +21,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
 
+    @Override
+    public Result sendCode(String phone, HttpSession session) {
+        RegexUtils.isPhoneInvalid(phone);
+
+        return null;
+    }
 }
