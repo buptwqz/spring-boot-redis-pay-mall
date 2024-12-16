@@ -1,4 +1,4 @@
-package com.hmdp.controller;
+package com.chooseulike.controller;
 
 
 import org.springframework.web.bind.annotation.RequestMapping;

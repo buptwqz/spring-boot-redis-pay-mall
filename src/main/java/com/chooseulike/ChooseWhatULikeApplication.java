@@ -11,5 +11,4 @@ public class ChooseWhatULikeApplication {
     public static void main(String[] args) {
         SpringApplication.run(ChooseWhatULikeApplication.class, args);
     }
-
 }
