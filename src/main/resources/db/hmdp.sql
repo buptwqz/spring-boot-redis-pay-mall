@@ -16,7 +16,7 @@
 
 SET NAMES utf8mb4;
 SET
-FOREIGN_KEY_CHECKS = 0;
+    FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
 -- Table structure for tb_blog
@@ -24,18 +24,22 @@ FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS `tb_blog`;
 CREATE TABLE `tb_blog`
 (
-    `id`          bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `shop_id`     bigint(20) NOT NULL COMMENT '商户id',
-    `user_id`     bigint(20) UNSIGNED NOT NULL COMMENT '用户id',
+    `id`          bigint(20) UNSIGNED                                            NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `shop_id`     bigint(20)                                                     NOT NULL COMMENT '商户id',
+    `user_id`     bigint(20) UNSIGNED                                            NOT NULL COMMENT '用户id',
     `title`       varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci  NOT NULL COMMENT '标题',
     `images`      varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '探店的照片，最多9张，多张以\",\"隔开',
     `content`     varchar(2048) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '探店的文字描述',
-    `liked`       int(8) UNSIGNED NULL DEFAULT 0 COMMENT '点赞数量',
-    `comments`    int(8) UNSIGNED NULL DEFAULT NULL COMMENT '评论数量',
+    `liked`       int(8) UNSIGNED                                                NULL     DEFAULT 0 COMMENT '点赞数量',
+    `comments`    int(8) UNSIGNED                                                NULL     DEFAULT NULL COMMENT '评论数量',
     `create_time` timestamp                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` timestamp                                                      NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 23 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 23
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci
+  ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_blog
@@ -63,18 +67,22 @@ VALUES (7, 10, 1, '杭州周末好去处｜💰50就可以骑马啦🐎', '/imgs
 DROP TABLE IF EXISTS `tb_blog_comments`;
 CREATE TABLE `tb_blog_comments`
 (
-    `id`          bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `user_id`     bigint(20) UNSIGNED NOT NULL COMMENT '用户id',
-    `blog_id`     bigint(20) UNSIGNED NOT NULL COMMENT '探店id',
-    `parent_id`   bigint(20) UNSIGNED NOT NULL COMMENT '关联的1级评论id，如果是一级评论，则值为0',
-    `answer_id`   bigint(20) UNSIGNED NOT NULL COMMENT '回复的评论id',
+    `id`          bigint(20) UNSIGNED                                           NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `user_id`     bigint(20) UNSIGNED                                           NOT NULL COMMENT '用户id',
+    `blog_id`     bigint(20) UNSIGNED                                           NOT NULL COMMENT '探店id',
+    `parent_id`   bigint(20) UNSIGNED                                           NOT NULL COMMENT '关联的1级评论id，如果是一级评论，则值为0',
+    `answer_id`   bigint(20) UNSIGNED                                           NOT NULL COMMENT '回复的评论id',
     `content`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '回复的内容',
-    `liked`       int(8) UNSIGNED NULL DEFAULT NULL COMMENT '点赞数',
-    `status`      tinyint(1) UNSIGNED NULL DEFAULT NULL COMMENT '状态，0：正常，1：被举报，2：禁止查看',
+    `liked`       int(8) UNSIGNED                                               NULL     DEFAULT NULL COMMENT '点赞数',
+    `status`      tinyint(1) UNSIGNED                                           NULL     DEFAULT NULL COMMENT '状态，0：正常，1：被举报，2：禁止查看',
     `create_time` timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci
+  ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_blog_comments
@@ -86,12 +94,16 @@ CREATE TABLE `tb_blog_comments`
 DROP TABLE IF EXISTS `tb_follow`;
 CREATE TABLE `tb_follow`
 (
-    `id`             bigint(20) NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `id`             bigint(20)          NOT NULL AUTO_INCREMENT COMMENT '主键',
     `user_id`        bigint(20) UNSIGNED NOT NULL COMMENT '用户id',
     `follow_user_id` bigint(20) UNSIGNED NOT NULL COMMENT '关联的用户id',
-    `create_time`    timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `create_time`    timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB
+  AUTO_INCREMENT = 1
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci
+  ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_follow
@@ -104,13 +116,16 @@ DROP TABLE IF EXISTS `tb_seckill_voucher`;
 CREATE TABLE `tb_seckill_voucher`
 (
     `voucher_id`  bigint(20) UNSIGNED NOT NULL COMMENT '关联的优惠券的id',
-    `stock`       int(8) NOT NULL COMMENT '库存',
-    `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
-    `begin_time`  timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '生效时间',
-    `end_time`    timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '失效时间',
-    `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+    `stock`       int(8)              NOT NULL COMMENT '库存',
+    `create_time` timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `begin_time`  timestamp           NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '生效时间',
+    `end_time`    timestamp           NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '失效时间',
+    `update_time` timestamp           NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`voucher_id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '秒杀优惠券表，与优惠券是一对一关系' ROW_FORMAT = Compact;
+) ENGINE = InnoDB
+  CHARACTER SET = utf8mb4
+  COLLATE = utf8mb4_general_ci COMMENT = '秒杀优惠券表，与优惠券是一对一关系'
+  ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_seckill_voucher
@@ -122,10 +137,10 @@ CREATE TABLE `tb_seckill_voucher`
 DROP TABLE IF EXISTS `tb_shop`;
 CREATE TABLE `tb_shop`
 (
-    `id`          bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT COMMENT '主键',
-    `name`        varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '商铺名称',
-    `type_id`     bigint(20) UNSIGNED NOT NULL COMMENT '商铺类型的id',
-    `images`      varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商铺图片，多个图片以\', \
+    `id`      bigint(20) UNSIGNED                                            NOT NULL AUTO_INCREMENT COMMENT '主键',
+    `name`    varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '商铺名称',
+    `type_id` bigint(20) UNSIGNED                                            NOT NULL COMMENT '商铺类型的id',
+    `images`  varchar(1024) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '商铺图片，多个图片以\', \
     '隔开',
     `area`        varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '商圈，例如陆家嘴',
     `address`     varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci  NOT NULL COMMENT '地址',
@@ -147,23 +162,29 @@ CREATE TABLE `tb_shop`
 -- ----------------------------
 INSERT INTO `tb_shop`
 VALUES (1, '103茶餐厅', 1,
-        'https://qcloud.dpfile.com/pc/jiclIsCKmOI2arxKN1Uf0Hx3PucIJH8q0QSz-Z8llzcN56-_QiKuOvyio1OOxsRtFoXqu0G3iT2T27qat3WhLVEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vfCF2ubeXzk49OsGrXt_KYDCngOyCwZK-s3fqawWswzk.jpg,https://qcloud.dpfile.com/pc/IOf6VX3qaBgFXFVgp75w-KKJmWZjFc8GXDU8g9bQC6YGCpAmG00QbfT4vCCBj7njuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vmIU_8ZGOT1OjpJmLxG6urQ.jpg',
-        '大关', '金华路锦昌文华苑29号', 120.149192, 30.316078, 80, 0000004215, 0000003035, 37, '10:00-22:00',
+        'https://qcloud.dpfile.com/pc/jiclIsCKmOI2arxKN1Uf0Hx3PucIJH8q0QSz-Z8llzcN56-_QiKuOvyio1OOxsRtFoXqu0G3iT2T27qat3WhLVEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vfCF2ubeXzk49OsGrXt_KYDCngOyCwZK-s3fqawWswzk.jpg,
+    https://qcloud.dpfile.com/pc/IOf6VX3qaBgFXFVgp75w-KKJmWZjFc8GXDU8g9bQC6YGCpAmG00QbfT4vCCBj7njuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vmIU_8ZGOT1OjpJmLxG6urQ.jpg ',
+        ' 大关 ', ' 金华路锦昌文华苑29号 ', 120.149192, 30.316078, 80, 0000004215, 0000003035, 37, '10:00-22:00',
         '2021-12-22 18:10:39', '2022-01-13 17:32:19');
 INSERT INTO `tb_shop`
 VALUES (2, '蔡馬洪涛烤肉·老北京铜锅涮羊肉', 1,
-        'https://p0.meituan.net/bbia/c1870d570e73accbc9fee90b48faca41195272.jpg,http://p0.meituan.net/mogu/397e40c28fc87715b3d5435710a9f88d706914.jpg,https://qcloud.dpfile.com/pc/MZTdRDqCZdbPDUO0Hk6lZENRKzpKRF7kavrkEI99OxqBZTzPfIxa5E33gBfGouhFuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vmIU_8ZGOT1OjpJmLxG6urQ.jpg',
-        '拱宸桥/上塘', '上塘路1035号（中国工商银行旁）', 120.151505, 30.333422, 85, 0000002160, 0000001460, 46,
+        'https://p0.meituan.net/bbia/c1870d570e73accbc9fee90b48faca41195272.jpg,
+    http://p0.meituan.net/mogu/397e40c28fc87715b3d5435710a9f88d706914.jpg,
+    https://qcloud.dpfile.com/pc/MZTdRDqCZdbPDUO0Hk6lZENRKzpKRF7kavrkEI99OxqBZTzPfIxa5E33gBfGouhFuzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vmIU_8ZGOT1OjpJmLxG6urQ.jpg ',
+        ' 拱宸桥/上塘 ', ' 上塘路1035号（中国工商银行旁）', 120.151505, 30.333422, 85, 0000002160, 0000001460, 46,
         '11:30-03:00', '2021-12-22 19:00:13', '2022-01-11 16:12:26');
 INSERT INTO `tb_shop`
 VALUES (3, '新白鹿餐厅(运河上街店)', 1,
-        'https://p0.meituan.net/biztone/694233_1619500156517.jpeg,https://img.meituan.net/msmerchant/876ca8983f7395556eda9ceb064e6bc51840883.png,https://img.meituan.net/msmerchant/86a76ed53c28eff709a36099aefe28b51554088.png',
-        '运河上街', '台州路2号运河上街购物中心F5', 120.151954, 30.32497, 61, 0000012035, 0000008045, 47, '10:30-21:00',
+        'https://p0.meituan.net/biztone/694233_1619500156517.jpeg,
+    https://img.meituan.net/msmerchant/876ca8983f7395556eda9ceb064e6bc51840883.png,
+    https://img.meituan.net/msmerchant/86a76ed53c28eff709a36099aefe28b51554088.png ',
+        ' 运河上街 ', ' 台州路2号运河上街购物中心F5 ', 120.151954, 30.32497, 61, 0000012035, 0000008045, 47, '10:30-21:00',
         '2021-12-22 19:10:05', '2022-01-11 16:12:42');
 INSERT INTO `tb_shop`
 VALUES (4, 'Mamala(杭州远洋乐堤港店)', 1,
-        'https://img.meituan.net/msmerchant/232f8fdf09050838bd33fb24e79f30f9606056.jpg,https://qcloud.dpfile.com/pc/rDe48Xe15nQOHCcEEkmKUp5wEKWbimt-HDeqYRWsYJseXNncvMiXbuED7x1tXqN4uzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vmIU_8ZGOT1OjpJmLxG6urQ.jpg',
-        '拱宸桥/上塘', '丽水路66号远洋乐堤港商城2期1层B115号', 120.146659, 30.312742, 290, 0000013519, 0000009529, 49,
+        'https://img.meituan.net/msmerchant/232f8fdf09050838bd33fb24e79f30f9606056.jpg,
+    https://qcloud.dpfile.com/pc/rDe48Xe15nQOHCcEEkmKUp5wEKWbimt-HDeqYRWsYJseXNncvMiXbuED7x1tXqN4uzFvxlbkWx5uwqY2qcjixFEuLYk00OmSS1IdNpm8K8sG4JN9RIm2mTKcbLtc2o2vmIU_8ZGOT1OjpJmLxG6urQ.jpg ',
+        ' 拱宸桥/上塘 ', ' 丽水路66号远洋乐堤港商城2期1层B115号 ', 120.146659, 30.312742, 290, 0000013519, 0000009529, 49,
         '11:00-22:00', '2021-12-22 19:17:15', '2022-01-11 16:12:51');
 INSERT INTO `tb_shop`
 VALUES (5, '海底捞火锅(水晶城购物中心店）', 1,
@@ -2344,7 +2365,9 @@ CREATE TABLE `tb_voucher`
     `pay_value`    bigint(10) UNSIGNED NOT NULL COMMENT '支付金额，单位是分。例如200代表2元',
     `actual_value` bigint(10) NOT NULL COMMENT '抵扣金额，单位是分。例如200代表2元',
     `type`         tinyint(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '0,普通券；1,秒杀券',
-    `status`       tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '1,上架; 2,下架; 3,过期',
+    `status`       tinyint(1) UNSIGNED NOT NULL DEFAULT 1 COMMENT '1,上架;
+2,下架;
+3,过期',
     `create_time`  timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time`  timestamp                                                     NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
     PRIMARY KEY (`id`) USING BTREE
@@ -2354,8 +2377,15 @@ CREATE TABLE `tb_voucher`
 -- Records of tb_voucher
 -- ----------------------------
 INSERT INTO `tb_voucher`
-VALUES (1, 1, '50元代金券', '周一至周日均可使用', '全场通用\\n无需预约\\n可无限叠加\\不兑现、不找零\\n仅限堂食', 4750,
-        5000, 0, 1, '2022-01-04 09:42:39', '2022-01-04 09:43:31');
+VALUES (1, 1, '50元代金券', '周一至周日均可使用', '全场通用
+\\n无需预约
+\\n可无限叠加
+\\不兑现、不找零
+\\n仅限堂食', 4750,
+        5000, 0, 1, '
+2022-01-04 09:42:39
+', '2022-01-04 09:43:31
+');
 
 -- ----------------------------
 -- Table structure for tb_voucher_order

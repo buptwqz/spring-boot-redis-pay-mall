@@ -1,7 +1,7 @@
 package com.chooseulike.mapper;
 
-import com.chooseulike.entity.SeckillVoucher;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.chooseulike.entity.SeckillVoucher;
 
 /**
  * <p>

@@ -1,9 +1,9 @@
 package com.chooseulike.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chooseulike.entity.Shop;
 import com.chooseulike.mapper.ShopMapper;
 import com.chooseulike.service.IShopService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

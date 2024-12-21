@@ -1,7 +1,7 @@
 package com.chooseulike.mapper;
 
-import com.chooseulike.entity.ShopType;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.chooseulike.entity.ShopType;
 
 /**
  * <p>

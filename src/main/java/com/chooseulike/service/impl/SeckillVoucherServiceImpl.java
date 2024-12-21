@@ -1,9 +1,9 @@
 package com.chooseulike.service.impl;
 
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chooseulike.entity.SeckillVoucher;
 import com.chooseulike.mapper.SeckillVoucherMapper;
 import com.chooseulike.service.ISeckillVoucherService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import org.springframework.stereotype.Service;
 
 /**

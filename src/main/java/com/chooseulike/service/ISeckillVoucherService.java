@@ -1,7 +1,7 @@
 package com.chooseulike.service;
 
-import com.chooseulike.entity.SeckillVoucher;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chooseulike.entity.SeckillVoucher;
 
 /**
  * <p>

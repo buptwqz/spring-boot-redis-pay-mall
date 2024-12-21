@@ -1,7 +1,7 @@
 package com.chooseulike.service;
 
-import com.chooseulike.entity.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chooseulike.entity.UserInfo;
 
 /**
  * <p>

@@ -1,7 +1,7 @@
 package com.chooseulike.service;
 
-import com.chooseulike.entity.ShopType;
 import com.baomidou.mybatisplus.extension.service.IService;
+import com.chooseulike.entity.ShopType;
 
 /**
  * <p>
