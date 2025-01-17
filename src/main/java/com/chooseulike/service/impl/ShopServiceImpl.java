@@ -1,33 +1,22 @@
 package com.chooseulike.service.impl;
 
-import cn.hutool.cache.Cache;
-import cn.hutool.core.util.BooleanUtil;
-import cn.hutool.core.util.StrUtil;
-import cn.hutool.json.JSONObject;
-import cn.hutool.json.JSONUtil;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.chooseulike.dto.Result;
 import com.chooseulike.entity.Shop;
 import com.chooseulike.mapper.ShopMapper;
 import com.chooseulike.service.IShopService;
 import com.chooseulike.utils.CacheClient;
-import com.chooseulike.utils.RedisConstants;
-import com.chooseulike.utils.RedisData;
 import org.springframework.data.redis.core.StringRedisTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-
-import java.sql.Time;
-import java.time.LocalDateTime;
-import java.util.TreeMap;
-import java.util.concurrent.Executor;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
-import static com.chooseulike.utils.RedisConstants.*;
+import static com.chooseulike.utils.RedisConstants.CACHE_SHOP_KEY;
+import static com.chooseulike.utils.RedisConstants.CACHE_SHOP_TTL;
 
 /**
  * <p>
@@ -39,9 +28,9 @@ import static com.chooseulike.utils.RedisConstants.*;
  */
 @Service
 public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IShopService {
+    private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
     @Resource
     private StringRedisTemplate stringRedisTemplate;
-
     @Resource
     private CacheClient cacheClient;
 
@@ -54,15 +43,13 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         // Shop shop = queryWithMutex(id);
 
         // 逻辑过期
-        Shop shop = cacheClient.queryWithLogicalExpire(CACHE_SHOP_KEY,id,Shop.class, this::getById,CACHE_SHOP_TTL,TimeUnit.SECONDS);
+        Shop shop = cacheClient.queryWithLogicalExpire(CACHE_SHOP_KEY, id, Shop.class, this::getById, CACHE_SHOP_TTL, TimeUnit.SECONDS);
 
-        if(shop == null){
+        if (shop == null) {
             return Result.fail("店铺不存在");
         }
         return Result.ok(shop);
     }
-
-    private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
 /*
     public Shop queryWithLogicalExpire(Long id){
         String key = CACHE_SHOP_KEY + id;
@@ -179,7 +166,6 @@ public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IS
         // 写入redis
         stringRedisTemplate.opsForValue().set(CACHE_SHOP_KEY + id,JSONUtil.toJsonStr(redisData));
     }*/
-
 
     @Override
     @Transactional

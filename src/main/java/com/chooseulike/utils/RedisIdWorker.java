@@ -1,7 +1,6 @@
 package com.chooseulike.utils;
 
 import org.springframework.data.redis.core.StringRedisTemplate;
-import org.springframework.scheduling.quartz.LocalDataSourceJobStore;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
