@@ -1,3 +1,3 @@
-# ChooseWhatULike
+# spring-boot-redis-pay-mall
 
-A project based on www.dianping.com
+基于SSM和Redis的支付平台
