@@ -8,7 +8,6 @@ import com.chooseulike.mapper.VoucherOrderMapper;
 import com.chooseulike.service.ISeckillVoucherService;
 import com.chooseulike.service.IVoucherOrderService;
 import com.chooseulike.utils.RedisIdWorker;
-import com.chooseulike.utils.SimpleRedisLock;
 import com.chooseulike.utils.UserHolder;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
@@ -20,14 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import javax.annotation.Resource;
 import java.time.LocalDateTime;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
- */
+
 @Service
 public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, VoucherOrder> implements IVoucherOrderService {
 
@@ -43,6 +35,7 @@ public class VoucherOrderServiceImpl extends ServiceImpl<VoucherOrderMapper, Vou
 
     @Resource
     private RedissonClient redissonClient;
+
     @Override
     public Result seckillVoucher(Long voucherId) {
         // 查询优惠券后判断

@@ -18,14 +18,6 @@ import java.util.concurrent.TimeUnit;
 import static com.chooseulike.utils.RedisConstants.CACHE_SHOP_KEY;
 import static com.chooseulike.utils.RedisConstants.CACHE_SHOP_TTL;
 
-/**
- * <p>
- * 服务实现类
- * </p>
- *
- * @author 虎哥
- * @since 2021-12-22
- */
 @Service
 public class ShopServiceImpl extends ServiceImpl<ShopMapper, Shop> implements IShopService {
     private static final ExecutorService CACHE_REBUILD_EXECUTOR = Executors.newFixedThreadPool(10);
