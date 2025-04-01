@@ -31,7 +31,7 @@ import static com.chooseulike.utils.SystemConstants.USER_NICK_NAME_PREFIX;
 public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements IUserService {
     @Resource
     private StringRedisTemplate stringRedisTemplate;
-    @Autowired
+    @Resource
     private ShopTypeServiceImpl shopTypeServiceImpl;
 
     @Override

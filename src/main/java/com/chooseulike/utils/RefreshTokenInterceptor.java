@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit;
 
 @Component
 public class RefreshTokenInterceptor implements HandlerInterceptor {
-    @Resource
+
     private StringRedisTemplate stringRedisTemplate;
 
     public RefreshTokenInterceptor(StringRedisTemplate stringRedisTemplate) {
